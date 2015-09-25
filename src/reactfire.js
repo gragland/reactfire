@@ -51,6 +51,17 @@
   }
 
   /**
+   * Clone an object
+   *
+   * @param {object} obj The object to clone
+   */
+  function _cloneObject(obj) {
+
+    return JSON.parse(JSON.stringify(obj));
+  }
+
+
+  /**
    * Throws a formatted error message.
    *
    * @param {string} message The error message to throw.
@@ -119,7 +130,9 @@
 
     this.data[bindVar] = _createRecord(key, value);
 
-    this.setState(this.data);
+    var data = _cloneObject(this.data);
+    this.setState(data);
+    //this.setState(this.data);
   }
 
 
@@ -152,7 +165,9 @@
     array.splice(insertionIndex, 0, _createRecord(key, value));
 
     // Update state
-    this.setState(this.data);
+    var data = _cloneObject(this.data);
+    this.setState(data);
+    //this.setState(this.data);
   }
 
   /**
@@ -171,7 +186,9 @@
     array.splice(index, 1);
 
     // Update state
-    this.setState(this.data);
+    var data = _cloneObject(this.data);
+    this.setState(data);
+    //this.setState(this.data);
   }
 
   /**
@@ -192,7 +209,9 @@
     array[index] = _createRecord(key, value);
 
     // Update state
-    this.setState(this.data);
+    var data = _cloneObject(this.data);
+    this.setState(data);
+    //this.setState(this.data);
   }
 
   /**
@@ -226,7 +245,9 @@
     array.splice(insertionIndex, 0, record);
 
     // Update state
-    this.setState(this.data);
+    var data = _cloneObject(this.data);
+    this.setState(data);
+    //this.setState(this.data);
   }
 
 
@@ -259,7 +280,9 @@
     if (bindAsArray) {
       // Set initial state to an empty array
       this.data[bindVar] = [];
-      this.setState(this.data);
+      var data = _cloneObject(this.data);
+      this.setState(data);
+      //this.setState(this.data);
 
       // Add listeners for all 'child_*' events
       this.firebaseListeners[bindVar] = {
