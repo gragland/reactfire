@@ -319,7 +319,7 @@
     componentWillUnmount: function() {
       for (var bindVar in this.firebaseRefs) {
         /* istanbul ignore else */
-        if (this.firebaseRefs.hasOwnProperty(bindVar) && this.firebaseRefs[bindVar] !== undefined) {
+        if (this.firebaseRefs.hasOwnProperty(bindVar)) {
           this.unbind(bindVar);
         }
       }
@@ -374,8 +374,9 @@
           this.firebaseRefs[bindVar].off(event, offListener);
         }
       }
-      this.firebaseRefs[bindVar] = undefined;
-      this.firebaseListeners[bindVar] = undefined;
+      
+      delete this.firebaseRefs[bindVar];
+      delete this.firebaseListeners[bindVar];
 
       // Update state
       var newState = {};
