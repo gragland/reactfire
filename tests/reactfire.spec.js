@@ -7,8 +7,8 @@ var sinon = require('sinon');
 chai.use(require('sinon-chai'));
 
 // React
-var React = require('react/addons');
-var ReactTestUtils = React.addons.TestUtils;
+var React = require('react');
+var ReactTestUtils = require('react-addons-test-utils');
 
 // ReactFire
 var Firebase = require('firebase');
@@ -17,7 +17,6 @@ var ReactFireMixin = require('../src/reactfire.js');
 // JSDom
 var jsdom = require('jsdom');
 global.document = jsdom.jsdom();  // Needed for ReactTestUtils shallow renderer
-document.createElement = null;  // Needed for Firebase
 
 // Test helpers
 var TH = require('./helpers.js');
@@ -1088,6 +1087,41 @@ describe('ReactFire', function() {
             second: { index: 1 },
             third: { index: 2 }
           }, function() {
+            shallowRenderer.unmount();
+
+            expect(this.unbind).to.have.been.calledTwice;
+            expect(this.unbind.args[0][0]).to.equal('items0');
+            expect(this.unbind.args[1][0]).to.equal('items1');
+
+            done();
+          }.bind(this));
+        },
+
+        render: function() {
+          return React.DOM.div(null);
+        }
+      });
+
+      shallowRenderer.render(React.createElement(TestComponent));
+    });
+
+    it('handles already unbound state when the component unmounts', function(done) {
+      var TestComponent = React.createClass({
+        mixins: [ReactFireMixin],
+
+        componentWillMount: function() {
+          sinon.spy(this, 'unbind');
+
+          this.bindAsArray(firebaseRef, 'items0');
+          this.bindAsObject(firebaseRef, 'items1');
+
+          firebaseRef.set({
+            first: { index: 0 },
+            second: { index: 1 },
+            third: { index: 2 }
+          }, function() {
+            this.unbind('items0');
+
             shallowRenderer.unmount();
 
             expect(this.unbind).to.have.been.calledTwice;

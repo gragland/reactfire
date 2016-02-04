@@ -374,7 +374,7 @@
           this.firebaseRefs[bindVar].off(event, offListener);
         }
       }
-      
+
       delete this.firebaseRefs[bindVar];
       delete this.firebaseListeners[bindVar];
 

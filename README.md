@@ -1,7 +1,7 @@
 # ReactFire
 
 [![Build Status](https://travis-ci.org/firebase/reactfire.svg?branch=master)](https://travis-ci.org/firebase/reactfire)
-[![Coverage Status](https://img.shields.io/coveralls/firebase/reactfire.svg?branch=master&style=flat)](https://coveralls.io/r/firebase/reactfire)
+[![Coverage Status](https://coveralls.io/repos/firebase/reactfire/badge.svg?branch=master&service=github)](https://coveralls.io/github/firebase/reactfire?branch=master)
 [![GitHub version](https://badge.fury.io/gh/firebase%2Freactfire.svg)](http://badge.fury.io/gh/firebase%2Freactfire)
 
 [ReactJS](http://facebook.github.io/react/) is a framework for building large, complex user
@@ -25,10 +25,10 @@ In order to use ReactFire in your project, you need to include the following fil
 <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
 
 <!-- Firebase -->
-<script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
 
 <!-- ReactFire -->
-<script src="https://cdn.firebase.com/libs/reactfire/0.5.0/reactfire.min.js"></script>
+<script src="https://cdn.firebase.com/libs/reactfire/0.6.0/reactfire.min.js"></script>
 ```
 
 Use the URL above to download both the minified and non-minified versions of ReactFire from the
